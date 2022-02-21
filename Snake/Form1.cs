@@ -25,8 +25,8 @@ namespace Snake
         public Graphics gr;// для соединения 
         // очередь для хранения клеток змейки
         Queue<Pair> q = new Queue<Pair>();
-        public int Direction = 0, Food = 0;
-        public int[] dy = { -1, 0, 1, 0 };
+        public int Direction = 0, Food = 0;//Direction направление куда ползет змейка/Food = 0 для роста змейки
+        public int[] dy = { -1, 0, 1, 0 };//массивы смещений
         public int[] dx = { 0, 1, 0, -1 };
         Pair Head, Tail;
         private void Form1_Load(object sender, EventArgs e)
@@ -56,16 +56,16 @@ namespace Snake
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Head.x += dx[Direction]; Head.y += dy[Direction];
-            if (Head.x < 0) Head.x = height;
+            Head.x += dx[Direction]; Head.y += dy[Direction];//изменится голова змейки
+            if (Head.x < 0) Head.x = height;//если выползает вверх, появляется снизу
             if (Head.y < 0) Head.y = width;
             if (Head.x > width) Head.x = 0;
             if (Head.y > height) Head.y = 0;
-            q.Enqueue(new Pair() { x = Head.x, y = Head.y });
-            gr.FillRectangle(Brushes.Lime, Head.x * k, Head.y * k, k, k);
+            q.Enqueue(new Pair() { x = Head.x, y = Head.y });//в очередь добавляем новую координату змейки
+            gr.FillRectangle(Brushes.Lime, Head.x * k, Head.y * k, k, k);//рисуем змейку на новой координате
             gr.DrawRectangle(Pens.Black, Head.x * k, Head.y * k, k, k);
-            Tail = q.Dequeue();
-            gr.FillRectangle(Brushes.Black, Tail.x * k, Tail.y * k, k, k);
+            Tail = q.Dequeue();//хвост
+            gr.FillRectangle(Brushes.Black, Tail.x * k, Tail.y * k, k, k);//зарисовываем черным
             pictureBox1.Image = field;
         }
     }

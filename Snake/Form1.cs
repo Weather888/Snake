@@ -29,6 +29,34 @@ namespace Snake
         public int[] dy = { -1, 0, 1, 0 };//массивы смещений
         public int[] dx = { 0, 1, 0, -1 };
         Pair Head, Tail;
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                // движение змейки влево
+                case Keys.A:
+                case Keys.Left:
+                    Direction = 3;
+                    break;
+                // движение змейки вправо
+                case Keys.D:
+                case Keys.Right:
+                    Direction = 1;
+                    break;
+                // движение змейки вверх
+                case Keys.W:
+                case Keys.Up:
+                    Direction = 0;
+                    break;
+                // движение змейки вниз
+                case Keys.S:
+                case Keys.Down:
+                    Direction = 2;
+                    break;
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Width = width * k;
